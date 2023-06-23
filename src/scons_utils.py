@@ -46,8 +46,8 @@ class idSetupBase:
 		file_out = file[:-3]
 		cmd = 'm4 '
 		for ( key, val ) in d.items():
-			cmd += '--define=%s="%s" ' % ( key, val )
-		cmd += '%s > %s' % ( file, file_out )
+			cmd += f'--define={key}="{val}" '
+		cmd += f'{file} > {file_out}'
 		self.SimpleCommand( cmd )	
 
 def checkLDD( target, source, env ):
@@ -112,5 +112,5 @@ def SetupUtils( env ):
 def BuildList( s_prefix, s_string ):
 	s_list = string.split( s_string )
 	for i in range( len( s_list ) ):
-		s_list[ i ] = s_prefix + '/' + s_list[ i ]
+		s_list[ i ] = f'{s_prefix}/{s_list[i]}'
 	return s_list
